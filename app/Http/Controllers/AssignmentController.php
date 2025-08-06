@@ -33,7 +33,7 @@ class AssignmentController extends Controller
     {
         $assignments = Assignment::where('courseID', $courseID)->get();
 
-        return view('assignments.courseAssignments', ['assignments' => $assignments]);
+        return view('assignmentsViews.courseAssignments', ['assignments' => $assignments]);
     }
 
 }

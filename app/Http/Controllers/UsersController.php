@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::where('id', '!=', auth()->id())->get();
-        return view('usersResource.index', ['users' => $users]);
+        return view('users.index', ['users' => $users]);
     }
 
     public function show($userID)
@@ -27,12 +27,12 @@ class UsersController extends Controller
         elseif($role == config('constants.role.TEACHER'))
             $userView = 'teacherMain';
 
-        return view('usersResource.show', ['user' => $user, 'userView' => $userView]);
+        return view('users.show', ['user' => $user, 'userView' => $userView]);
     }
 
     public function create()
     {
-        return view('usersResource.create');
+        return view('users.create');
     }
 
     public function store(Request $request)
@@ -52,7 +52,7 @@ class UsersController extends Controller
     public function edit($userID)
     {
         $user = User::findOrFail($userID);
-        return view('usersResource.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user]);
     }
 
 public function update(Request $request, $userID)
@@ -88,13 +88,13 @@ public function update(Request $request, $userID)
     {
         $teachers = User::where('roleID', config('constants.role.TEACHER'))->get();
 
-        return view('usersResource.showTeachers', ['teachers' => $teachers]);
+        return view('usersViews.showTeachers', ['teachers' => $teachers]);
     }
 
     public function showFellowTeachers()
     {
         $teachers = User::where('roleID', config('constants.role.TEACHER'))->where('id', '!=', auth()->id())->get();
 
-        return view('usersResource.showFellowTeachers', ['teachers' => $teachers]);
+        return view('usersViews.showFellowTeachers', ['teachers' => $teachers]);
     }
 }

@@ -47,7 +47,7 @@ class NotificationController extends Controller
 
     public function showAnnouncementForm($courseID)
     {
-        return view('notifications.showAnnouncementForm', ['courseID' => $courseID]);
+        return view('notificationsViews.showAnnouncementForm', ['courseID' => $courseID]);
     }
 
     public function storeAnnouncement(Request $request, $courseID)

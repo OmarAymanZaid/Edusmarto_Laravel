@@ -111,7 +111,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
         
-        return view('courses.enrolledCourses', ['courses' => $courses]);
+        return view('coursesViews.enrolledCourses', ['courses' => $courses]);
     }
 
 
@@ -132,7 +132,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
 
-        return view('courses.coursesForStudents', ['courses' => $courses]);
+        return view('coursesViews.coursesForStudents', ['courses' => $courses]);
     }
 
 
@@ -170,7 +170,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
             
-        return view('courses.coursesUploadAssignments', ['courses' => $courses]);
+        return view('coursesViews.coursesUploadAssignments', ['courses' => $courses]);
     }
 
     public function showAssignedCourses()
@@ -182,7 +182,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
 
-        return view('courses.assignedCourses', ['courses' => $courses]);
+        return view('coursesViews.assignedCourses', ['courses' => $courses]);
     }
 
     public function showCoursesToTeach()
@@ -202,7 +202,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
 
-        return view('courses.coursesToTeach', ['courses' => $courses]);
+        return view('coursesViews.coursesToTeach', ['courses' => $courses]);
     }
 
     public function applyToTeachCourse($courseID)
@@ -237,7 +237,7 @@ class CourseController extends Controller
             ->select('courses.*')
             ->get();
 
-        return view('courses.assignedCoursesForAssignments', ['courses' => $courses]);
+        return view('coursesViews.assignedCoursesForAssignments', ['courses' => $courses]);
     }
 
 }

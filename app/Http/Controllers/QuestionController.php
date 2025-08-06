@@ -72,10 +72,10 @@ class QuestionController extends Controller
         $role = auth()->user()->roleID;
 
         if($role == config('constants.role.STUDENT'))
-            return view('questions.evaluateTeacher', ['questions' => $questions, 'teacherID' => $teacherID]);
+            return view('questionsViews.evaluateTeacher', ['questions' => $questions, 'teacherID' => $teacherID]);
 
         elseif($role == config('constants.role.TEACHER'))
-            return view('questions.evaluateFellowTeacher', ['questions' => $questions, 'teacherID' => $teacherID]);
+            return view('questionsViews.evaluateFellowTeacher', ['questions' => $questions, 'teacherID' => $teacherID]);
 
     }
 

@@ -9,7 +9,7 @@ class ProfileController extends Controller
 {
         public function showProfile()
     {
-        return view('usersResource.userProfile');
+        return view('usersViews.userProfile');
     }
 
     public function changeProfileImage(Request $request)

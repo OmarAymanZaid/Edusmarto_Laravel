@@ -12,7 +12,7 @@ class MaterialController extends Controller
     {
         $materials = Material::where('courseID', $courseID)->get();
 
-        return view('material.courseMaterial', ['materials' => $materials]);
+        return view('materialViews.courseMaterial', ['materials' => $materials]);
     }
 
     public function showCoursesToUpoadMaterial()
@@ -24,7 +24,7 @@ class MaterialController extends Controller
             ->select('courses.*')
             ->get();
         
-        return view('material.coursesToUploadMaterial', ['courses' => $courses]);
+        return view('materialViews.coursesToUploadMaterial', ['courses' => $courses]);
     }
 
     public function uploadMaterial(Request $request, $courseID)
