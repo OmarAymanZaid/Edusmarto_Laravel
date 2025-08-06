@@ -11,12 +11,9 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AssignmentController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('login.show');
 });
 
-Route::get('/home', function(){
-    return view('home');
-}) ->name('home');
 
 Route::get('/register', [AuthController::class, 'showRegister']) -> name('register.show');
 Route::get('/login', [AuthController::class , 'showLogin']) -> name('login.show');
