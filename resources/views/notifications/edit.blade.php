@@ -8,7 +8,7 @@
 
         <div class="mb-3">
             <label for="send-notification" class="form-label">Text</label>
-            <input type="text" class="form-control h-32" id="send-notification" name="notificationText" value="{{ old('notificationText') }}" required>
+            <textarea class="form-control h-32" id="send-notification" name="notificationText" required> {{ old('notificationText') }} </textarea>
         </div>     
 
         <button type="submit" class="btn btn-primary">Send</button>

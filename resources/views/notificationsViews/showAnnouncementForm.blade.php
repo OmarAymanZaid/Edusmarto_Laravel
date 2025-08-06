@@ -6,7 +6,7 @@
     <hr class="mb-3">
 
         <div class="mb-3">
-            <input type="text" class="form-control h-32" id="send-announcement" name="announcementText" value="{{ old('announcementText') }}" required>
+            <textarea class="form-control h-32" id="send-announcement" name="announcementText" required> {{ old('announcementText') }} </textarea>
         </div>     
 
         <button type="submit" class="btn btn-primary">Send</button>
