@@ -49,8 +49,8 @@ Route::middleware('auth') ->group(function() {
         Route::delete('/admin/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 
         Route::get('/admin/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-        Route::get('/admin/notifications/{notification}/edit', [NotificationController::class, 'edit'])->name('notifications.edit');
-        Route::put('/admin/notifications/{notification}', [NotificationController::class, 'update'])->name('notifications.update');
+        Route::get('/admin/notifications/{user}/create', [NotificationController::class, 'create'])->name('notifications.create');
+        Route::post('/admin/notifications/{user}', [NotificationController::class, 'store'])->name('notifications.store');
         Route::delete('/admin/notifications/{notification}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 
         Route::get('/admin/questions', [QuestionController::class, 'index']) ->name('questions.index');

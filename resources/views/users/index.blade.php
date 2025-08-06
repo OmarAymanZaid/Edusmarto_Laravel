@@ -28,7 +28,7 @@
                         <td>
                             <a href="{{ route('user.show', $user->id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ route('notifications.edit', $user->id) }}" class="btn btn-warning">Notifiy</a>
+                            <a href="{{ route('notifications.create', $user->id) }}" class="btn btn-warning">Notifiy</a>
                             <button type="button"
                                     class="btn btn-danger open-delete-modal"
                                     data-form="#deleteUserForm{{ $user->id }}"

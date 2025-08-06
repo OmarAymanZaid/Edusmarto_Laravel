@@ -15,13 +15,13 @@ class NotificationController extends Controller
         return view('notifications.index', ['notifications' => $notifications]);
     }
 
-    public function edit($userID)
+    public function create($userID)
     {
 
-        return view('notifications.edit', ['userID' => $userID]);
+        return view('notifications.create', ['userID' => $userID]);
     }
 
-    public function update(Request $request, $userID)
+    public function store(Request $request, $userID)
     {
         $valid = $request ->validate([
             'notificationText' => 'required|string|max:255',
