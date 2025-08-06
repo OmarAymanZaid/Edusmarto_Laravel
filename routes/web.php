@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NotificationController;
@@ -11,7 +11,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AssignmentController;
 
 Route::get('/', function () {
-    return to_route('login.show');
+    return view('welcome');
 });
 
 
@@ -26,9 +26,9 @@ Route::post('/logout', [AuthController::class, 'logout']) ->name('logout');
 
 
 Route::middleware('auth') ->group(function() {
-    Route::get('/user/profile', [UsersController::class, 'showProfile'])->name('user.profile');
-    Route::post('/user/profile/photo', [UsersController::class, 'changeProfileImage'])->name('user.profileChangeImage');
-    Route::post('/user/profile/name', [UsersController::class, 'changeProfileName'])->name('user.profileChangeName');
+    Route::get('/user/profile', [ProfileController::class, 'showProfile'])->name('user.profile');
+    Route::post('/user/profile/photo', [ProfileController::class, 'changeProfileImage'])->name('user.profileChangeImage');
+    Route::post('/user/profile/name', [ProfileController::class, 'changeProfileName'])->name('user.profileChangeName');
 
     Route::group(['middleware' => 'admin'], function(){
         Route::get('/admin/users', [UsersController::class, 'index']) ->name('user.index');
