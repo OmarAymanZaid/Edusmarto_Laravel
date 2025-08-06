@@ -22,11 +22,25 @@ class ProfileController extends Controller
         {
             $photoPath = $request->file('photo')->store('images','public');
             $user = auth()->user();
-            $user ->photo = $photoPath;
+            $user ->photo = $photoPath;       
             $user ->save();
         }
 
         return to_route('user.profile')-> with('success', 'Image Changed Successfully!');
+    }
+
+    public function removeProfileImage(Request $request)
+    {
+        $valid = $request ->validate([
+            'photo'          => 'required|string',
+        ]);
+
+        $user = auth()->user();
+        $user ->photo = $valid['photo'];
+        $user ->save();
+
+        return to_route('user.profile')-> with('success', 'Image Removed Successfully!');
+
     }
 
     public function changeProfileName(Request $request)

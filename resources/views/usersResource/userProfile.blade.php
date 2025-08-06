@@ -13,11 +13,17 @@
         <div class="profile-card">
             <div class="profile-image">
                 <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="User Image">
-                <form action="{{ route('user.profileChangeImage') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('user.profileChangeImage') }}" method="POST" enctype="multipart/form-data" style="display:inline-block;">
                     @csrf
-                    <label for="photo-upload" class="change-photo-btn">Change Photo</label>
+                    <label for="photo-upload" class="btn btn-primary" style="margin-top: 14px">Change Photo</label>
                     <input type="file" id="photo-upload" name="photo" style="display: none;" onchange="this.form.submit()">
                 </form>
+                <form action="{{ route('user.profileRemoveImage') }}" method="POST" enctype="multipart/form-data" style="display:inline-block;">
+                    @csrf
+                    <input type="hidden" name="photo" value="images/anonymousIcon.jpg">
+                    <button type="submit" class="btn btn-danger" style="margin-top: 14px;">Remove Photo</button>
+                </form>
+
 
             </div>
             <div class="profile-info">
