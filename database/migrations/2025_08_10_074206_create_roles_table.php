@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('photo', 200)->default('images/anonymousIcon.jpg');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50);
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('roles');
+    }
 };

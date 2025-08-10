@@ -55,24 +55,24 @@ class UsersController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-public function update(Request $request, $userID)
-{
-    $user = User::findOrFail($userID);
+    public function update(Request $request, $userID)
+    {
+        $user = User::findOrFail($userID);
 
-    $valid = $request->validate([
-        'name'     => 'required|string|max:255',
-        'email'    => 'required|email|unique:users,email,' . $userID,
-        'roleID'   => 'required|exists:roles,id',
-    ]);
+        $valid = $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email,' . $userID,
+            'roleID'   => 'required|exists:roles,id',
+        ]);
 
-    $user->name = $valid['name'];
-    $user->email = $valid['email'];
-    $user->roleID = $valid['roleID'];
+        $user->name = $valid['name'];
+        $user->email = $valid['email'];
+        $user->roleID = $valid['roleID'];
 
-    $user->save();
+        $user->save();
 
-    return to_route('user.show', $userID)-> with('success', 'User Updated Successfully !');
-}
+        return to_route('user.show', $userID)-> with('success', 'User Updated Successfully !');
+    }
 
     public function destroy($userID)
     {
