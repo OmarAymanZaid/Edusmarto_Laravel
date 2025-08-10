@@ -9,6 +9,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\FileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -68,7 +69,7 @@ Route::middleware('auth') ->group(function() {
         Route::post('/student/courses/{course}', [CourseController::class, 'enrollInCourse'])->name('courses.enroll');
         Route::delete('/student/courses/{course}', [CourseController::class, 'dropCourse'])->name('courses.drop');
 
-        Route::get('/student/material/{course}', [MaterialController::class, 'showCourseMaterial'])->name('material.courseMaterial');
+        Route::get('/student/material/{course}', [FileController::class, 'showCourseMaterial'])->name('material.courseMaterial');
 
         Route::get('/student/teachers', [UsersController::class, 'showTeachers'])->name('teachers.index');
         Route::get('/student/EvaluateTeacher/{teacher}', [QuestionController::class, 'showEvaluationForm'])->name('teachers.evaluate');
@@ -76,7 +77,7 @@ Route::middleware('auth') ->group(function() {
         Route::get('/student/teachers/{teacher}', [UsersController::class, 'show']) ->name('teachers.show');
 
         Route::get('/student/courses/assignments', [CourseController::class, 'showEnrolledCoursesForAssignments'])->name('courses.assignments');
-        Route::post('/student/courses/assignements/{course}', [AssignmentController::class, 'store'])->name('assingments.store');
+        Route::post('/student/courses/assignements/{course}', [FileController::class, 'uploadAssignment'])->name('assingments.store');
 
 
     });
@@ -94,11 +95,11 @@ Route::middleware('auth') ->group(function() {
 
         Route::get('/teacher/announcements/courses{course}', [NotificationController::class, 'showAnnouncementForm'])->name('announcements.showAnnouncementForm');
         Route::post('/teacher/accouncements/courses{course}', [NotificationController::class, 'storeAnnouncement'])->name('announcements.storeAnnouncement');
-        Route::get('/teacher/courses/material', [MaterialController::class, 'showCoursesToUpoadMaterial'])->name('materials.coursesToUploadeMaterialFor');
-        Route::post('/teacher/courses{course}/material', [MaterialController::class, 'uploadMaterial'])->name('materials.upload');
+        Route::get('/teacher/courses/material', [FileController::class, 'showCoursesToUpoadMaterial'])->name('materials.coursesToUploadeMaterialFor');
+        Route::post('/teacher/courses{course}/material', [FileController::class, 'uploadMaterial'])->name('materials.upload');
 
         Route::get('/teacher/courses/assignments', [CourseController::class, 'showAssignedCoursesForAssignments'])->name('courses.submittedAssignments');
-        Route::get('/teacher/course{course}/UploadedAssignments', [AssignmentController::class, 'showUploadedAssignments'])->name('courses.showUploadedAssignments');
+        Route::get('/teacher/course{course}/UploadedAssignments', [FileController::class, 'showUploadedAssignments'])->name('courses.showUploadedAssignments');
 
     });
 });
