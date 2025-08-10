@@ -12,5 +12,18 @@ class Notification extends Model
     protected $fillable = [
         'notificationText',
         'userID',
+        'sentFrom',
+        'cancelled',
     ];
+
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sentFrom', 'id');
+    }
+
+    public function reciever()
+    {
+        return $this->belongsTo(User::class, 'userID', 'id');
+
+    }
 }

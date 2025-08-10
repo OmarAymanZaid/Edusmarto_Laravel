@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table -> integer('sentFrom');
-            $table -> integer('sentTo');
+            $table->foreignId('sentFrom')->constrained('users')->cascadeOnDelete();
             $table -> integer('cancelled');
         });
     }

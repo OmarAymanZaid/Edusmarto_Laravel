@@ -9,6 +9,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">sent from</th>
+                    <th scope="col">sent to</th>
                     <th scope="col">Text</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -18,6 +20,8 @@
                 @foreach ($notifications as $index => $notification)
                     <tr>
                         <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $notification->sender?->name ?? 'missing' }}</td>
+                        <td>{{ $notification->reciever?->name ?? 'missing' }}</td>
                         <td>{{ $notification->notificationText }}</td>
                         <td>
                             <div style="display: inline-block">

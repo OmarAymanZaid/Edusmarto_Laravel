@@ -29,7 +29,9 @@ class NotificationController extends Controller
 
         $notification = Notification::create([
             'notificationText' => $valid['notificationText'],
+            'sentFrom' => auth()->user()->id,
             'userID' => $userID,
+            'cancelled' => 1,
         ]);
 
         $notification->save();
