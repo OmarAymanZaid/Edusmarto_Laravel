@@ -11,16 +11,16 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Text</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($questions as $question)
+                @foreach ($questions as $index => $question)
                     <tr>
-                        <th scope="row">{{ $question->ID }}</th>
+                        <th scope="row">{{ $index + 1 }}</th>
                         <td>{{ $question->questionText }}</td>
                         <td>
                             <a href="{{ route('questions.edit', $question->ID) }}" class="btn btn-primary">Update</a>

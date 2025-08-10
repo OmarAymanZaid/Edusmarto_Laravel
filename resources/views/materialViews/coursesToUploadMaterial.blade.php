@@ -8,7 +8,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Actions</th>
@@ -16,9 +16,9 @@
             </thead>
             <tbody>
 
-                @foreach ($courses as $course)
+                @foreach ($courses as $index => $course)
                     <tr>
-                        <td scope="row">{{ $course->ID }}</th>
+                        <td scope="row">{{ $index + 1 }}</th>
                         <td scope="row">{{ $course->name }}</th>
                         <td scope="row">{{ $course->description }}</th>
                         <td>

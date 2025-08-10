@@ -7,8 +7,6 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\FileController;
 
 Route::get('/', function () {

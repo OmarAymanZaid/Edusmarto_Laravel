@@ -8,24 +8,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Text</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($notifications as $notification)
+                @foreach ($notifications as $index => $notification)
                     <tr>
-                        <th scope="row">{{ $notification->ID }}</th>
+                        <th scope="row">{{ $index + 1 }}</th>
                         <td>{{ $notification->notificationText }}</td>
                         <td>
-                            {{-- <form action="{{ route('notifications.destroy', $notification->ID) }}" method="POST" style="display: inline">
-                                @csrf
-                                @method('DELETE')
-
-                                <button class="btn btn-danger">Delete</button>
-                            </form> --}}
                             <div style="display: inline-block">
                                 <button type="button"
                                         class="btn btn-danger open-delete-modal"
