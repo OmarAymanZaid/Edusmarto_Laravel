@@ -16,16 +16,6 @@
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="user@gmail.com" name="email" value="{{ old('email', $user->email) }}" required>
         </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter a strong password" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="passwordConfirm" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="passwordConfirm" name="password_confirmation" placeholder="confirm password" required>
-        </div>
-
         <div class="form-group">
             <label for="roleID">Role</label>
             <select id="roleID" name="roleID" required>

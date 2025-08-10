@@ -62,13 +62,11 @@ public function update(Request $request, $userID)
     $valid = $request->validate([
         'name'     => 'required|string|max:255',
         'email'    => 'required|email|unique:users,email,' . $userID,
-        'password' => 'required|string|min:8|confirmed',
         'roleID'   => 'required|exists:roles,id',
     ]);
 
     $user->name = $valid['name'];
     $user->email = $valid['email'];
-    $user->password = $valid['password'];
     $user->roleID = $valid['roleID'];
 
     $user->save();
