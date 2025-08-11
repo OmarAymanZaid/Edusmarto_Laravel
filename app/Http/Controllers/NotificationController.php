@@ -31,7 +31,7 @@ class NotificationController extends Controller
             'notificationText' => $valid['notificationText'],
             'sentFrom' => auth()->user()->id,
             'userID' => $userID,
-            'cancelled' => 1,
+            'cancelled' => 0,
         ]);
 
         $notification->save();
@@ -45,6 +45,15 @@ class NotificationController extends Controller
         $notification->delete();
         
         return to_route('notifications.index') -> with('success', 'Notification Deleted Successfully !');
+    }
+
+    public function dismissNotification(Request $request, $id)
+    {
+        $notification = Notification::findOrFail($id);
+        $notification->cancelled = 1;
+        $notification->save();
+
+        return response()->json(['success' => true]);
     }
 
     public function showAnnouncementForm($courseID)

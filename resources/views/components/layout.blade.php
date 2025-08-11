@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -55,7 +56,25 @@
                 </div>
 
                 <div class="dropdown-menu" id="notificationDropdown">
-                  <p>No new notifications</p>
+                  @if(!empty($notifications) && count($notifications))
+                    <div id="notifications-box" style="background: #f5f5f5; padding: 10px; border: 1px solid #ccc;">
+                      @foreach ($notifications as $notification)
+                        <div class="notification-item" id="notification-{{ $notification->id }}"
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; padding:8px; background:white; border-radius:5px;">
+                          <p style="margin:0;">{{ $notification->notificationText }}</p>
+
+                          <button type="button"
+                                  data-url="{{ route('notifications.dismiss', $notification->id) }}"
+                                  onclick="dismissNotification(this, {{ $notification->id }})"
+                                  style="background:none; border:none; font-weight:bold; cursor:pointer;">
+                            ✕
+                          </button>
+                        </div>
+                      @endforeach
+                    </div>
+                  @else
+                    <p>No new notifications</p>
+                  @endif
                 </div>
               </div>
 

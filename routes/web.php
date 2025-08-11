@@ -29,6 +29,7 @@ Route::middleware('auth') ->group(function() {
     Route::post('/user/profile/photo', [ProfileController::class, 'changeProfileImage'])->name('user.profileChangeImage');
     Route::post('/user/profile/removephoto', [ProfileController::class, 'removeProfileImage'])->name('user.profileRemoveImage');
     Route::post('/user/profile/name', [ProfileController::class, 'changeProfileName'])->name('user.profileChangeName');
+    Route::post('/notifications/{notification}/cancel', [NotificationController::class, 'dismissNotification'])->name('notifications.dismiss');
 
     Route::group(['middleware' => 'admin'], function(){
         Route::get('/admin/users', [UsersController::class, 'index']) ->name('user.index');

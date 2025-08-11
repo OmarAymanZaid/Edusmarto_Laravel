@@ -72,3 +72,40 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentForm) currentForm.submit();
         });
 });
+
+//DismissNotification///////////////////////////////////////////////////////////////
+        function dismissNotification(button, id) {
+          const url  = button.dataset.url;
+          const token = document.querySelector('meta[name="csrf-token"]').content;  
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': token,
+              'Accept': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+          })
+          .then(async response => {
+            if (response.ok) {
+              const el = document.getElementById(`notification-${id}`);
+              if (el) {
+                // small fade + slide animation
+                el.style.transition = 'opacity 200ms ease, transform 200ms ease';
+                el.style.opacity = 0;
+                el.style.transform = 'translateX(12px)';
+                setTimeout(() => el.remove(), 220);
+              }
+            } else {
+              const payload = await response.json().catch(() => null);
+              console.error('Dismiss failed', response.status, payload);
+              alert(payload?.error || 'Could not dismiss notification.');
+            }
+          })
+          .catch(err => {
+            console.error('Network error', err);
+            alert('Network error. Try again.');
+          });
+        }
