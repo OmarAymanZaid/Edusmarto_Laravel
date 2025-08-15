@@ -51,6 +51,15 @@ class FileController extends Controller
         return to_route('materials.coursesToUploadeMaterialFor') -> with('success', 'Material Uploaded Successfully!');
     }
 
+    public function downloadMaterial($materialID)
+    {
+        $material   = Material::findOrFail($materialID);
+        $path       = $material ->location;
+        $name       = $material ->materialCourse->name . '_Material.' . pathinfo($material->name, PATHINFO_EXTENSION);
+
+        return Storage::disk('public')->download($path, $name);
+    }
+
     // Assignments ///////////////////////////////////////////////////////////////////////////////
     public function uploadAssignment(Request $request, $courseID)
     {

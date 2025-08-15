@@ -78,6 +78,7 @@ Route::middleware('auth') ->group(function() {
 
         Route::get('/student/courses/assignments', [CourseController::class, 'showEnrolledCoursesForAssignments'])->name('courses.assignments');
         Route::post('/student/courses/assignements/{course}', [FileController::class, 'uploadAssignment'])->name('assingments.store');
+        Route::post('/student/course/material/{id}', [FileController::class, 'downloadMaterial']) ->name('materials.download');
 
 
     });

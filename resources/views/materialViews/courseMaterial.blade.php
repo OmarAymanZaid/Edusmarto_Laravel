@@ -18,10 +18,8 @@
                     <tr>
                         <th scope="row">{{ $material->name }}</th>
                         <td>
-                            <form action="" method="POST" style="display: inline">
+                            <form action="{{ route('materials.download', $material->ID) }}" method="POST" style="display: inline">
                                 @csrf
-                                @method('DELETE')
-
                                 <button class="btn btn-primary">Download</button>
                             </form>
                         </td>

@@ -14,4 +14,9 @@ class Material extends Model
         'name',
         'location',
     ];
+
+    public function materialCourse()
+    {
+        return $this -> belongsTo(Course::class, 'courseID', 'ID');
+    }
 }
