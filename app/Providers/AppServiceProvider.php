@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('components.layout', function ($view) {
         if (Auth::check()) 
         {
-            $notifications = Notification::where('userID', Auth::id())
+            $notifications = Notification::where('sentTo', Auth::id())
                 ->where('cancelled', 0)
                 ->get(['id', 'notificationText']);
 

@@ -1,5 +1,8 @@
 // Toggles //////////////////////////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', () => {
+// Delete Pop-up Modal //////////////////////////////////////////////////////////////////
+
+function toggles()
+{
     const toggles = {
         user: {
             button: document.getElementById('userToggle'),
@@ -39,10 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
             closeAllMenus();
         }
     });
-});
+}
 
-// Delete Pop-up Modal ///////////////////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
+function deleteModal()
+{
         const modal = document.getElementById('globalDeleteModal');
         const cancelBtn = document.getElementById('modalCancel');
         const confirmBtn = document.getElementById('modalConfirm');
@@ -71,41 +74,47 @@ document.addEventListener('DOMContentLoaded', function () {
         confirmBtn.addEventListener('click', () => {
             if (currentForm) currentForm.submit();
         });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    toggles();
+    deleteModal();
 });
 
 //DismissNotification///////////////////////////////////////////////////////////////
-        function dismissNotification(button, id) {
-          const url  = button.dataset.url;
-          const token = document.querySelector('meta[name="csrf-token"]').content;  
+      function dismissNotification(button, id) 
+      {
+        const url  = button.dataset.url;
+        const token = document.querySelector('meta[name="csrf-token"]').content;  
 
-          fetch(url, {
-            method: 'POST',
-            headers: {
-              'X-CSRF-TOKEN': token,
-              'Accept': 'application/json',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-          })
-          .then(async response => {
-            if (response.ok) {
-              const el = document.getElementById(`notification-${id}`);
-              if (el) {
-                // small fade + slide animation
-                el.style.transition = 'opacity 200ms ease, transform 200ms ease';
-                el.style.opacity = 0;
-                el.style.transform = 'translateX(12px)';
-                setTimeout(() => el.remove(), 220);
-              }
-            } else {
-              const payload = await response.json().catch(() => null);
-              console.error('Dismiss failed', response.status, payload);
-              alert(payload?.error || 'Could not dismiss notification.');
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'X-CSRF-TOKEN': token,
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({})
+        })
+        .then(async response => {
+          if (response.ok) {
+            const el = document.getElementById(`notification-${id}`);
+            if (el) {
+              // small fade + slide animation
+              el.style.transition = 'opacity 200ms ease, transform 200ms ease';
+              el.style.opacity = 0;
+              el.style.transform = 'translateX(12px)';
+              setTimeout(() => el.remove(), 220);
             }
-          })
-          .catch(err => {
-            console.error('Network error', err);
-            alert('Network error. Try again.');
-          });
-        }
+          } else {
+            const payload = await response.json().catch(() => null);
+            console.error('Dismiss failed', response.status, payload);
+            alert(payload?.error || 'Could not dismiss notification.');
+          }
+        })
+        .catch(err => {
+          console.error('Network error', err);
+          alert('Network error. Try again.');
+        });
+      }
