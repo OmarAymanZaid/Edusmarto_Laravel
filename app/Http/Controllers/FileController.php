@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Material;
+use App\Models\Assignment;
+use App\Models\Course;
 
 class FileController extends Controller
 {
