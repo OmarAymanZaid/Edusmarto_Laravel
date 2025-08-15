@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Material;
 use App\Models\Assignment;
 use App\Models\Course;
 
+
 class FileController extends Controller
 {
-    // Material
+    // Material ///////////////////////////////////////////////////////////////////////////////////
     public function showCourseMaterial($courseID)
     {
         $materials = Material::where('courseID', $courseID)->get();
@@ -46,10 +48,10 @@ class FileController extends Controller
             'location'           => $materialPath,            
         ]);
 
-        return to_route('materials.coursesToUploadeMaterialFor');
+        return to_route('materials.coursesToUploadeMaterialFor') -> with('success', 'Material Uploaded Successfully!');
     }
 
-    // Assignments
+    // Assignments ///////////////////////////////////////////////////////////////////////////////
     public function uploadAssignment(Request $request, $courseID)
     {
         $valid = $request ->validate([
@@ -69,7 +71,7 @@ class FileController extends Controller
         ]);
 
 
-        return to_route('courses.assignments');
+        return to_route('courses.assignments') -> with('success', 'Assignment Uploaded Successfully!');
     }
 
     public function showUploadedAssignments($courseID)
@@ -77,6 +79,15 @@ class FileController extends Controller
         $assignments = Assignment::where('courseID', $courseID)->get();
 
         return view('assignmentsViews.courseAssignments', ['assignments' => $assignments]);
+    }
+
+    public function downloadAssignment($assignmentID)
+    {
+        $assignment = Assignment::findOrFail($assignmentID);
+        $path       = $assignment ->location;
+        $name = $assignment->assignmentUploader->name . '_Assignment.' . pathinfo($assignment->name, PATHINFO_EXTENSION);
+
+        return Storage::disk('public')->download($path, $name);
     }
 
 }

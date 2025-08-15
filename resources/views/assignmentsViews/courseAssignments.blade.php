@@ -17,10 +17,10 @@
 
                 @foreach ($assignments as $assignment)
                     <tr>
-                        <td scope="row">{{ $assignment->studentID }}</td>
+                        <td scope="row">{{ $assignment->assignmentUploader?->name ?? 'Missing' }}</td>
                         <td scope="row">{{ $assignment->name }}</td>
                         <td>
-                            <form action="" method="POST" style="display: inline">
+                            <form action="{{ route('assignments.download', $assignment->ID) }}" method="POST" style="display: inline">
                                 @csrf
 
                                 <button class="btn btn-primary">Download</button>
@@ -32,13 +32,10 @@
         </table>
     @endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
     

@@ -99,6 +99,7 @@ Route::middleware('auth') ->group(function() {
 
         Route::get('/teacher/courses/assignments', [CourseController::class, 'showAssignedCoursesForAssignments'])->name('courses.submittedAssignments');
         Route::get('/teacher/course{course}/UploadedAssignments', [FileController::class, 'showUploadedAssignments'])->name('courses.showUploadedAssignments');
+        Route::post('/teacher/course/assignment/{id}', [FileController::class, 'downloadAssignment']) ->name('assignments.download');
 
     });
 });

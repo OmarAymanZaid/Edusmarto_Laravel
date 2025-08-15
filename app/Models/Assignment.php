@@ -16,4 +16,9 @@ class Assignment extends Model
         'name',
         'location',
     ];
+
+    public function assignmentUploader()
+    {
+        return $this -> belongsTo(User::class, 'studentID', 'id');
+    }
 }
