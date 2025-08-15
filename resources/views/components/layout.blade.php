@@ -57,7 +57,7 @@
 
                 <div class="dropdown-menu" id="notificationDropdown">
                   @if(!empty($notifications) && count($notifications))
-                    <div id="notifications-box" style="background: #f5f5f5; padding: 10px; border: 1px solid #ccc;">
+                    <div id="notifications-box" style="background: #f5f5f5; padding: 8px;">
                       @foreach ($notifications as $notification)
                         <div class="notification-item" id="notification-{{ $notification->id }}"
                             style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; padding:8px; background:white; border-radius:5px;">
