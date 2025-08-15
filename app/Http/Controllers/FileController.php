@@ -89,5 +89,4 @@ class FileController extends Controller
 
         return Storage::disk('public')->download($path, $name);
     }
-
 }

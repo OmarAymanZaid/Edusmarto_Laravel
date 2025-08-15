@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
@@ -103,5 +104,4 @@ Route::middleware('auth') ->group(function() {
 
     });
 });
-
 
